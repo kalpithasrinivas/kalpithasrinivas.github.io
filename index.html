@@ -1,153 +1,296 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
+
 <head>
+
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
 <title>Kalpitha Srinivas | DevOps Engineer</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
-
-<script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
 
 <style>
 
 body{
-font-family:Poppins;
+font-family:Inter;
 margin:0;
-background:#020617;
+background:#0D1117;
+color:#E6EDF3;
+}
+
+/* NAV */
+
+nav{
+
+padding:20px 60px;
+display:flex;
+justify-content:space-between;
+border-bottom:1px solid #30363D;
+
+}
+
+nav a{
+
+color:#8B949E;
+text-decoration:none;
+margin-left:20px;
+
+}
+
+nav a:hover{
+
+color:#38BDF8;
+
+}
+
+/* HERO */
+
+.hero{
+
+padding:120px 60px;
+
+}
+
+.hero h1{
+
+font-size:55px;
+margin-bottom:10px;
+
+}
+
+.hero p{
+
+font-size:20px;
+color:#8B949E;
+max-width:600px;
+
+}
+
+.button{
+
+margin-top:30px;
+display:inline-block;
+padding:12px 25px;
+border:1px solid #2EA043;
+color:#2EA043;
+text-decoration:none;
+border-radius:6px;
+
+}
+
+.button:hover{
+
+background:#2EA043;
 color:white;
+
 }
 
-header{
-text-align:center;
-padding:80px;
-background:linear-gradient(135deg,#020617,#0f172a);
-}
-
-h1{
-font-size:42px;
-}
-
-.highlight{
-color:#3b82f6;
-}
+/* SECTION */
 
 .section{
-max-width:1000px;
-margin:auto;
-padding:50px 20px;
+
+padding:80px 60px;
+border-top:1px solid #30363D;
+
 }
+
+.section h2{
+
+font-size:30px;
+margin-bottom:20px;
+
+}
+
+/* CARDS */
 
 .card{
-background:#0f172a;
-padding:20px;
+
+background:#161B22;
+padding:25px;
 margin-top:20px;
-border-radius:10px;
+border-radius:8px;
+border:1px solid #30363D;
+
 }
 
-.skills span{
-background:#2563eb;
-padding:8px 15px;
-margin:5px;
-display:inline-block;
-border-radius:5px;
+.card:hover{
+
+border-color:#38BDF8;
+
 }
 
-button{
-background:#2563eb;
-border:none;
-padding:10px 20px;
-color:white;
-border-radius:5px;
-margin:5px;
-cursor:pointer;
+/* GRID */
+
+.grid{
+
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+gap:20px;
+
 }
+
+/* FOOTER */
 
 footer{
+
+padding:40px;
 text-align:center;
-padding:20px;
-color:gray;
+color:#8B949E;
+
 }
 
 </style>
+
 </head>
 
 <body>
 
-<header>
+<nav>
 
-<h1>Kalpitha Srinivas</h1>
+<div>
 
-<h2 class="highlight">
-<span id="typing"></span>
-</h2>
+Kalpitha Srinivas
 
-<a href="Kalpitha_Srinivas_Resume.pdf">
-<button>Download Resume</button>
+</div>
+
+<div>
+
+<a href="#about">About</a>
+
+<a href="#experience">Experience</a>
+
+<a href="#projects">Projects</a>
+
+<a href="#contact">Contact</a>
+
+</div>
+
+</nav>
+
+
+<div class="hero">
+
+<h1>
+
+DevOps Engineer building reliable cloud infrastructure.
+
+</h1>
+
+<p>
+
+I specialize in AWS, Kubernetes, CI/CD, and GitOps.
+Currently working at OPT IT Technologies and previously at Dell Technologies, deploying and managing production cloud systems.
+
+</p>
+
+<a href="Kalpitha_Srinivas_Resume.pdf" class="button">
+
+Download Resume
+
 </a>
 
-<a href="https://github.com/kalpithasrinivas">
-<button>GitHub</button>
-</a>
+</div>
 
-<a href="https://linkedin.com/in/kalpitha-srinivas-740358220">
-<button>LinkedIn</button>
-</a>
 
-</header>
+<div id="about" class="section">
 
-<div class="section">
-
-<h2>About Me</h2>
+<h2>About</h2>
 
 <div class="card">
 
-DevOps Engineer with 1.7+ years experience in AWS, Kubernetes, Docker, and CI/CD.
+DevOps Engineer with 1.7+ years experience in cloud infrastructure and deployment automation.
 
-Built complete GitOps pipeline using GitHub Actions, Helm, and Argo CD.
+Worked on AWS EKS, Docker, Kubernetes, Helm, Argo CD, and GitHub Actions.
 
-</div>
-
-</div>
-
-<div class="section">
-
-<h2>Skills</h2>
-
-<div class="skills">
-
-<span>AWS</span>
-<span>Kubernetes</span>
-<span>Docker</span>
-<span>Helm</span>
-<span>Argo CD</span>
-<span>GitHub Actions</span>
-<span>Terraform</span>
-<span>Linux</span>
+Migrated enterprise applications to Kubernetes and built automated CI/CD pipelines.
 
 </div>
 
 </div>
 
-<div class="section">
+
+<div id="experience" class="section">
+
+<h2>Experience</h2>
+
+<div class="grid">
+
+<div class="card">
+
+<h3>OPT IT Technologies</h3>
+
+DevOps Engineer
+
+<br><br>
+
+Managing AWS infrastructure, deployments, and monitoring production environments.
+
+</div>
+
+<div class="card">
+
+<h3>Dell Technologies</h3>
+
+DevOps Engineer
+
+<br><br>
+
+Migrated 25+ applications to Kubernetes and automated CI/CD pipelines.
+
+</div>
+
+</div>
+
+</div>
+
+
+<div id="projects" class="section">
 
 <h2>Projects</h2>
 
 <div class="card">
 
-End-to-End CI/CD Deployment on AWS EKS
+<h3>CI/CD and GitOps Deployment on AWS EKS</h3>
+
+Built complete DevOps pipeline:
+
+<br><br>
+
+GitHub → GitHub Actions → DockerHub → Argo CD → Kubernetes → AWS
 
 <br><br>
 
 <a href="https://github.com/kalpithasrinivas/go-web-app-devops">
 
-<button>View Project</button>
+View Project →
 
 </a>
 
 </div>
 
 </div>
+
+
+<div id="contact" class="section">
+
+<h2>Contact</h2>
+
+<div class="card">
+
+Email: kalpithaasrinivas@gmail.com
+
+<br><br>
+
+LinkedIn:
+<br>
+
+https://linkedin.com/in/kalpitha-srinivas-740358220
+
+</div>
+
+</div>
+
 
 <footer>
 
@@ -155,24 +298,6 @@ End-to-End CI/CD Deployment on AWS EKS
 
 </footer>
 
-<script>
-
-new Typed("#typing", {
-
-strings:[
-"DevOps Engineer",
-"AWS Cloud Engineer",
-"Kubernetes Specialist",
-"CI/CD Automation Engineer"
-],
-
-typeSpeed:60,
-backSpeed:40,
-loop:true
-
-});
-
-</script>
-
 </body>
+
 </html>
