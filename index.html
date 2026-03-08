@@ -815,9 +815,96 @@ footer a:hover { color: var(--accent); }
     <h2 class="sec-title rv">Things I've <em>Built</em></h2>
     <div class="proj-list">
 
+      <!-- PROJECT 1 -->
+      <div class="proj-card proj-std rv">
+        <div class="proj-body">
+
+          <div class="pn">Project 01 / 03</div>
+          <div class="pbadge">Cloud · Kubernetes · Microservices</div>
+
+          <h3 class="ptitle">AWS EKS Three-Tier Microservices Deployment</h3>
+
+          <p class="pdesc">
+            Deployed a complete cloud-native microservices application (Robot Shop) on AWS using Kubernetes and Helm.
+            The system demonstrates a scalable three-tier architecture with containerized services orchestrated
+            through Amazon EKS and exposed using an AWS Load Balancer.
+          </p>
+
+          <ul class="ppts">
+            <li><span>Provisioned a Kubernetes cluster on AWS EKS and deployed the Robot Shop microservices application using Helm charts.</span></li>
+            <li><span>Implemented container orchestration for multiple services including web, catalogue, cart, payment and shipping.</span></li>
+            <li><span>Configured AWS Load Balancer to expose Kubernetes services and route external traffic to the cluster.</span></li>
+            <li><span>Designed a scalable microservices architecture using Kubernetes pods, services and internal networking.</span></li>
+            <li><span>Demonstrated real-world DevOps practices including containerization, Helm-based deployments and Kubernetes service discovery.</span></li>
+          </ul>
+
+          <div class="ptechs">
+            <span class="ptech">AWS</span>
+            <span class="ptech">Amazon EKS</span>
+            <span class="ptech">Kubernetes</span>
+            <span class="ptech">Helm</span>
+            <span class="ptech">Docker</span>
+            <span class="ptech">Microservices</span>
+            <span class="ptech">AWS Load Balancer</span>
+          </div>
+
+          <a href="https://github.com/kalpithasrinivas/aws-eks-three-tier-microservices"
+             class="plink"
+             target="_blank">
+             View on GitHub →
+          </a>
+
+        </div>
+
+        <div class="proj-side">
+
+          <div class="pipe-head">// Architecture Flow</div>
+
+          <div class="pipe-step">
+            <div class="pipe-ic">🌐</div>
+            <div>
+              <div class="pipe-nm">User Traffic</div>
+              <div class="pipe-sb">Incoming browser requests</div>
+            </div>
+          </div>
+
+          <div class="pipe-conn"></div>
+
+          <div class="pipe-step">
+            <div class="pipe-ic hi">⚖️</div>
+            <div>
+              <div class="pipe-nm">AWS Load Balancer</div>
+              <div class="pipe-sb">Routes traffic to cluster</div>
+            </div>
+          </div>
+
+          <div class="pipe-conn"></div>
+
+          <div class="pipe-step">
+            <div class="pipe-ic hi">☸️</div>
+            <div>
+              <div class="pipe-nm">Amazon EKS</div>
+              <div class="pipe-sb">Kubernetes cluster</div>
+            </div>
+          </div>
+
+          <div class="pipe-conn"></div>
+
+          <div class="pipe-step">
+            <div class="pipe-ic">📦</div>
+            <div>
+              <div class="pipe-nm">Robot Shop Services</div>
+              <div class="pipe-sb">Cart · Catalogue · User · Payment</div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- PROJECT 2 -->
       <div class="proj-card proj-split rv">
         <div class="proj-body">
-          <div class="pn">Project 01 / 02</div>
+          <div class="pn">Project 02 / 03</div>
           <div class="pbadge">★ Featured · End-to-End DevOps Pipeline</div>
           <h3 class="ptitle">CI/CD &amp; GitOps Deployment on AWS EKS</h3>
           <p class="pdesc">A fully automated, production-grade DevOps pipeline for a Go web application — from source code commit to live Kubernetes deployment with zero manual steps.</p>
@@ -836,6 +923,7 @@ footer a:hover { color: var(--accent); }
           </div>
           <a href="https://github.com/kalpithasrinivas/go-web-app-devops" class="plink" target="_blank">View on GitHub →</a>
         </div>
+
         <div class="proj-side">
           <div class="pipe-head">// Pipeline Flow</div>
           <div class="pipe-step"><div class="pipe-ic">📝</div><div><div class="pipe-nm">Code Push</div><div class="pipe-sb">Commit to GitHub main</div></div></div>
@@ -852,9 +940,10 @@ footer a:hover { color: var(--accent); }
         </div>
       </div>
 
+      <!-- PROJECT 3 -->
       <div class="proj-card proj-std rv">
         <div class="proj-body">
-          <div class="pn">Project 02 / 02</div>
+          <div class="pn">Project 03 / 03</div>
           <div class="pbadge">Academic · Security · ML · Biometrics</div>
           <h3 class="ptitle">Biometric Authentication System</h3>
           <p class="pdesc">A three-factor biometric authentication system combining fingerprint recognition, iris recognition and encrypted credential storage — achieving 95% accuracy with CNN classification and Rubik's Cube Encryption.</p>
@@ -873,6 +962,7 @@ footer a:hover { color: var(--accent); }
             <span class="ptech">Scikit-learn</span><span class="ptech">NumPy</span>
           </div>
         </div>
+
         <div class="proj-side">
           <div class="pipe-head">// Project Stats</div>
           <div class="p2-stats">
