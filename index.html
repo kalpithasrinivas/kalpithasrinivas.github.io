@@ -7,263 +7,171 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;0,900;1,400;1,600;1,700&family=Lato:wght@300;400;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
-
-/* ════ TOKENS ════ */
 :root {
-  --bg:       #f8f6f2;
-  --bg2:      #f0ede6;
-  --bg3:      #e6e0d6;
-  --surface:  #fdfcfa;
-  --ink:      #1c1814;
-  --ink2:     #3a2f24;
-  --muted:    #7a6e62;
-  --muted2:   #b0a496;
-  --accent:     #6b3a4a;
-  --accent-dk:  #4e2535;
-  --accent-lt:  #f5eced;
-  --brass:      #a07840;
-  --brass-lt:   #f7f0e4;
-  --green:      #3a6b50;
-  --border:   rgba(90,72,60,0.13);
-  --border-a: rgba(107,58,74,0.22);
-  --fh: 'Playfair Display', Georgia, serif;
-  --fb: 'Lato', sans-serif;
-  --fm: 'IBM Plex Mono', monospace;
-  --g: clamp(20px, 5vw, 80px);
-  --r: 6px;
+  --bg:#f8f6f2;--bg2:#f0ede6;--bg3:#e6e0d6;--surface:#fdfcfa;--ink:#1c1814;--ink2:#3a2f24;--muted:#7a6e62;--muted2:#b0a496;--accent:#6b3a4a;--accent-dk:#4e2535;--accent-lt:#f5eced;--brass:#a07840;--brass-lt:#f7f0e4;--green:#3a6b50;--border:rgba(90,72,60,0.13);--border-a:rgba(107,58,74,0.22);--fh:'Playfair Display',Georgia,serif;--fb:'Lato',sans-serif;--fm:'IBM Plex Mono',monospace;--g:clamp(20px,5vw,80px);--r:6px;
 }
-
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-html { scroll-behavior: smooth; }
-body {
-  background: var(--bg); color: var(--ink);
-  font-family: var(--fb); font-weight: 300;
-  font-size: 15px; line-height: 1.7;
-  overflow-x: hidden; -webkit-font-smoothing: antialiased;
-}
-.hl  { font-weight: 700; color: var(--ink2); display: inline; }
-.hl-t { font-weight: 700; color: var(--accent); display: inline; }
-
-body::before {
-  content: ''; position: fixed; inset: 0;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)' opacity='0.025'/%3E%3C/svg%3E");
-  pointer-events: none; z-index: 9999;
-}
-
-::-webkit-scrollbar { width: 4px; }
-::-webkit-scrollbar-track { background: var(--bg2); }
-::-webkit-scrollbar-thumb { background: var(--accent); border-radius: 2px; }
-
-/* ════ NAV ════ */
-nav {
-  position: fixed; top: 0; left: 0; right: 0; z-index: 200;
-  height: 58px; display: flex; justify-content: space-between; align-items: center;
-  padding: 0 var(--g); background: rgba(248,246,242,0.95);
-  backdrop-filter: blur(18px); border-bottom: 1px solid var(--border);
-}
-.n-logo { font-family: var(--fh); font-size: 17px; font-weight: 700; color: var(--ink); text-decoration: none; letter-spacing: 0.01em; }
-.n-logo em { font-style: italic; color: var(--accent); }
-.n-links { display: flex; align-items: center; gap: 22px; }
-.n-links a { font-family: var(--fm); font-size: 10.5px; letter-spacing: 0.11em; text-transform: uppercase; color: var(--muted); text-decoration: none; transition: color 0.2s; }
-.n-links a:hover { color: var(--accent); }
-.n-cv { padding: 8px 18px; background: var(--accent); color: var(--surface) !important; border-radius: var(--r); font-size: 10px !important; transition: background 0.2s !important; }
-.n-cv:hover { background: var(--accent-dk) !important; }
-.hbg { display: none; flex-direction: column; gap: 5px; background: none; border: none; cursor: pointer; padding: 4px; }
-.hbg span { display: block; width: 22px; height: 1.5px; background: var(--ink2); border-radius: 1px; }
-.mob { display: none; position: fixed; top: 58px; left: 0; right: 0; z-index: 199; background: rgba(248,246,242,0.97); backdrop-filter: blur(18px); border-bottom: 1px solid var(--border); flex-direction: column; padding: 14px var(--g) 20px; gap: 0; }
-.mob.open { display: flex; }
-.mob a { font-family: var(--fm); font-size: 11.5px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); text-decoration: none; padding: 12px 0; border-bottom: 1px solid var(--border); }
-.mob a:last-child { border: none; }
-.mob a:hover { color: var(--accent); }
-
-/* ════ HERO ════ */
-.hero { padding: 110px var(--g) 70px; max-width: 1200px; margin: 0 auto; }
-.h-eyebrow { display: flex; align-items: center; gap: 14px; margin-bottom: 28px; animation: up 0.7s ease both 0.1s; }
-.h-ebar { width: 36px; height: 1px; background: var(--accent); }
-.h-etxt { font-family: var(--fm); font-size: 10.5px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--accent); }
-.h-name { font-family: var(--fh); font-size: clamp(2.4rem, 5vw, 4rem); font-weight: 600; line-height: 1.05; letter-spacing: -0.015em; color: var(--ink); white-space: nowrap; margin-bottom: 16px; animation: up 0.7s ease both 0.2s; }
-.h-name-it { font-style: italic; color: var(--accent); display: inline; }
-.h-tagline { font-family: var(--fh); font-size: clamp(14px, 2vw, 22px); font-weight: 400; font-style: italic; color: #6e6258; margin-bottom: 26px; animation: up 0.7s ease both 0.3s; letter-spacing: 0.01em; }
-.h-desc { font-size: clamp(14px, 1.5vw, 15.5px); color: var(--muted); line-height: 1.88; max-width: 580px; margin-bottom: 34px; animation: up 0.7s ease both 0.38s; }
-.h-btns { display: flex; gap: 11px; flex-wrap: wrap; animation: up 0.7s ease both 0.46s; }
-.btn-p { display: inline-flex; align-items: center; gap: 7px; padding: 11px 26px; background: var(--accent); color: var(--surface); font-family: var(--fm); font-size: 10.5px; letter-spacing: 0.12em; text-transform: uppercase; text-decoration: none; border-radius: var(--r); font-weight: 500; transition: background 0.2s, transform 0.15s, box-shadow 0.2s; }
-.btn-p:hover { background: var(--accent-dk); transform: translateY(-2px); box-shadow: 0 6px 20px rgba(107,58,74,0.28); }
-.btn-s { display: inline-flex; align-items: center; gap: 7px; padding: 11px 26px; background: transparent; color: var(--ink2); font-family: var(--fm); font-size: 10.5px; letter-spacing: 0.12em; text-transform: uppercase; text-decoration: none; border-radius: var(--r); border: 1.5px solid var(--border-a); font-weight: 400; transition: all 0.2s; }
-.btn-s:hover { border-color: var(--accent); color: var(--accent); transform: translateY(-2px); }
-.h-stats { display: grid; grid-template-columns: repeat(4, 1fr); margin-top: 52px; padding-top: 32px; border-top: 1px solid var(--border); animation: up 0.7s ease both 0.54s; }
-.h-stat { padding-right: 24px; position: relative; }
-.h-stat:not(:last-child)::after { content: ''; position: absolute; right: 12px; top: 4px; bottom: 4px; width: 1px; background: var(--border); }
-.h-sn { font-family: var(--fh); font-size: clamp(28px, 3.8vw, 46px); font-weight: 700; color: var(--brass); line-height: 1; margin-bottom: 6px; }
-.h-sl { font-family: var(--fm); font-size: 9.5px; letter-spacing: 0.13em; text-transform: uppercase; color: var(--muted2); line-height: 1.5; }
-
-/* ════ SHARED SECTION ════ */
-.sec { padding: 76px var(--g); max-width: 1200px; margin: 0 auto; }
-.sec-alt { background: var(--bg2); }
-.sec-alt-w { max-width: 1200px; margin: 0 auto; padding: 76px var(--g); }
-.eyebrow { display: flex; align-items: center; gap: 10px; margin-bottom: 6px; }
-.ey-tag { font-family: var(--fm); font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--accent); }
-.ey-ln { width: 40px; height: 1px; background: var(--border); }
-.sec-title { font-family: var(--fh); font-size: clamp(28px, 4.5vw, 50px); font-weight: 700; color: var(--ink); letter-spacing: -0.02em; line-height: 1.06; margin-bottom: 38px; }
-.sec-title em { font-style: italic; color: var(--accent); }
-
-/* ════ ABOUT ════ */
-.about-wrap { display: grid; grid-template-columns: 1fr 320px; gap: 56px; align-items: start; }
-.about-bio p { font-size: 15px; color: var(--muted); line-height: 1.88; margin-bottom: 16px; }
-.about-bio p:last-child { margin-bottom: 0; }
-.avail-pill { display: inline-flex; align-items: center; gap: 8px; background: #edf5f1; border: 1px solid #86c9a4; padding: 7px 14px; border-radius: 30px; margin-top: 20px; }
-.avail-dot { width: 7px; height: 7px; background: var(--green); border-radius: 50%; animation: pulse 2.2s infinite; flex-shrink: 0; }
-.avail-pill span { font-family: var(--fm); font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--green); }
-.a-cards { display: flex; flex-direction: column; gap: 10px; }
-.a-card { background: var(--surface); border: 1px solid var(--border); border-left: 2.5px solid var(--accent); border-radius: var(--r); padding: 15px 17px; transition: all 0.2s; }
-.a-card:hover { box-shadow: 0 4px 16px rgba(0,0,0,0.06); transform: translateX(3px); border-color: var(--border-a); }
-.a-ct { font-family: var(--fm); font-size: 9px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--accent); margin-bottom: 5px; }
-.a-cv { font-size: 13px; color: var(--ink2); line-height: 1.6; }
-.a-cv a { color: var(--accent); text-decoration: none; font-weight: 700; }
-.a-cv a:hover { text-decoration: underline; }
-.a-cv small { color: var(--muted2); }
-
-/* ════ EXPERIENCE ════ */
-.exp-list { display: flex; flex-direction: column; }
-.exp-row { display: grid; grid-template-columns: 195px 1fr; padding: 40px 0; border-bottom: 1px solid var(--border); }
-.exp-row:first-child { border-top: 1px solid var(--border); }
-.exp-row:hover .exp-body { padding-left: 8px; }
-.exp-l { padding-right: 28px; }
-.exp-date { font-family: var(--fm); font-size: 10px; color: var(--accent); letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 10px; }
-.exp-co { font-family: var(--fh); font-size: 19px; font-weight: 700; color: var(--ink); line-height: 1.15; margin-bottom: 4px; }
-.exp-city { font-family: var(--fm); font-size: 9.5px; letter-spacing: 0.07em; color: var(--muted2); margin-bottom: 10px; }
-.exp-pill { display: inline-block; font-family: var(--fm); font-size: 9px; letter-spacing: 0.12em; text-transform: uppercase; padding: 3px 10px; border-radius: 20px; border: 1px solid var(--border); color: var(--muted); }
-.exp-pill.live { background: #edf5f1; border-color: #86c9a4; color: var(--green); }
-.exp-body { transition: padding-left 0.22s; }
-.exp-role { font-family: var(--fh); font-size: 19px; font-weight: 600; font-style: italic; color: var(--accent); margin-bottom: 7px; line-height: 1.2; }
-.exp-proj { display: inline-flex; align-items: center; gap: 6px; font-family: var(--fm); font-size: 9.5px; letter-spacing: 0.13em; text-transform: uppercase; color: var(--muted2); margin-bottom: 16px; background: var(--bg2); padding: 4px 11px; border-radius: 4px; border: 1px solid var(--border); }
-.exp-proj::before { content: '//'; color: var(--accent); }
-.exp-pts { list-style: none; display: flex; flex-direction: column; gap: 9px; margin-bottom: 18px; }
-.exp-pts li { display: flex; align-items: baseline; gap: 10px; font-size: 14px; color: var(--muted); line-height: 1.78; }
-.exp-pts li::before { content: ''; min-width: 5px; height: 5px; background: var(--accent); border-radius: 50%; flex-shrink: 0; align-self: flex-start; margin-top: 7px; }
-.exp-pts li span { display: inline; }
-.exp-tools { display: flex; flex-wrap: wrap; gap: 6px; }
-.exp-tool { font-family: var(--fm); font-size: 10px; color: var(--muted); background: var(--bg2); border: 1px solid var(--border); padding: 3px 10px; border-radius: 4px; transition: all 0.18s; }
-.exp-tool:hover { color: var(--accent); border-color: var(--border-a); background: var(--accent-lt); }
-
-/* ════ EDUCATION ════ */
-.edu-strip { background: var(--accent-dk); padding: 48px var(--g); position: relative; overflow: hidden; }
-.edu-strip::before { content: 'B.E.'; font-family: var(--fh); font-size: clamp(100px, 18vw, 230px); font-weight: 900; color: rgba(255,255,255,0.04); position: absolute; right: var(--g); top: 50%; transform: translateY(-50%); line-height: 1; pointer-events: none; letter-spacing: -0.04em; }
-.edu-in { max-width: 1200px; margin: 0 auto; display: flex; align-items: center; gap: 48px; flex-wrap: wrap; }
-.edu-tag { font-family: var(--fm); font-size: 9.5px; letter-spacing: 0.22em; text-transform: uppercase; color: rgba(255,255,255,0.4); margin-bottom: 8px; }
-.edu-deg { font-family: var(--fh); font-size: clamp(18px, 2.8vw, 27px); font-weight: 700; color: #fff; line-height: 1.2; margin-bottom: 5px; }
-.edu-sch { font-family: var(--fm); font-size: 11px; letter-spacing: 0.05em; color: rgba(255,255,255,0.38); }
-.edu-sep { width: 1px; height: 64px; background: rgba(255,255,255,0.14); flex-shrink: 0; }
-.edu-n { font-family: var(--fh); font-size: clamp(36px, 5.5vw, 58px); font-weight: 900; color: #e8c89e; line-height: 1; margin-bottom: 5px; }
-.edu-nl { font-family: var(--fm); font-size: 9.5px; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(255,255,255,0.32); }
-
-/* ════ SKILLS ════ */
-.sk-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
-.sk-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--r); padding: 22px 20px; position: relative; overflow: hidden; transition: all 0.22s; }
-.sk-card::after { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px; background: linear-gradient(90deg, var(--accent), var(--brass)); transform: scaleX(0); transform-origin: left; transition: transform 0.28s ease; }
-.sk-card:hover { box-shadow: 0 8px 26px rgba(0,0,0,0.08); transform: translateY(-3px); border-color: var(--border-a); }
-.sk-card:hover::after { transform: scaleX(1); }
-.sk-icon { font-size: 19px; margin-bottom: 10px; }
-.sk-title { font-family: var(--fh); font-size: 15px; font-weight: 700; color: var(--ink); margin-bottom: 11px; }
-.sk-pills { display: flex; flex-wrap: wrap; gap: 6px; }
-.sk-pill { font-family: var(--fm); font-size: 10.5px; color: var(--muted); background: var(--bg); border: 1px solid var(--border); padding: 3px 10px; border-radius: 4px; cursor: default; transition: all 0.18s; }
-.sk-pill:hover { color: var(--accent); border-color: var(--border-a); background: var(--accent-lt); }
-
-/* ════ PROJECTS ════ */
-.proj-list { display: flex; flex-direction: column; gap: 20px; }
-.proj-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--r); overflow: hidden; transition: all 0.24s; }
-.proj-card:hover { box-shadow: 0 12px 44px rgba(0,0,0,0.09); transform: translateY(-4px); border-color: var(--border-a); }
-.proj-split { display: grid; grid-template-columns: 1fr 310px; }
-.proj-std { display: grid; grid-template-columns: 1fr 260px; }
-.proj-body { padding: 34px; }
-.proj-side { background: var(--bg2); border-left: 1px solid var(--border); padding: 30px 26px; display: flex; flex-direction: column; justify-content: center; }
-.pn { font-family: var(--fm); font-size: 9.5px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--muted2); margin-bottom: 8px; }
-.pbadge { display: inline-flex; align-items: center; gap: 5px; font-family: var(--fm); font-size: 9.5px; letter-spacing: 0.13em; text-transform: uppercase; color: var(--brass); background: var(--brass-lt); border: 1px solid rgba(160,120,64,0.25); padding: 4px 11px; border-radius: 20px; margin-bottom: 14px; }
-.ptitle { font-family: var(--fh); font-size: clamp(18px, 2.4vw, 24px); font-weight: 700; color: var(--ink); line-height: 1.2; margin-bottom: 10px; }
-.pdesc { font-size: 13.5px; color: var(--muted); line-height: 1.8; margin-bottom: 16px; }
-.ppts { list-style: none; display: flex; flex-direction: column; gap: 8px; margin-bottom: 18px; }
-.ppts li { display: flex; align-items: baseline; gap: 10px; font-size: 13.5px; color: var(--muted); line-height: 1.75; }
-.ppts li::before { content: ''; min-width: 4px; height: 4px; background: var(--accent); border-radius: 50%; flex-shrink: 0; align-self: flex-start; margin-top: 8px; }
-.ppts li span { display: inline; }
-.ptechs { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 20px; }
-.ptech { font-family: var(--fm); font-size: 10px; color: var(--muted); border: 1px solid var(--border); padding: 3px 10px; border-radius: 4px; transition: all 0.18s; }
-.ptech:hover { color: var(--accent); border-color: var(--border-a); }
-.plink { display: inline-flex; align-items: center; gap: 7px; font-family: var(--fm); font-size: 10.5px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); text-decoration: none; font-weight: 500; border-bottom: 1.5px solid rgba(107,58,74,0.3); padding-bottom: 2px; transition: all 0.2s; }
-.plink:hover { gap: 12px; border-color: var(--accent); }
-.pipe-head { font-family: var(--fm); font-size: 9px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--muted2); margin-bottom: 16px; padding-bottom: 12px; border-bottom: 1px solid var(--border); }
-.pipe-step { display: flex; align-items: center; gap: 10px; padding: 6px 0; }
-.pipe-ic { width: 30px; height: 30px; border-radius: 6px; display: flex; align-items: center; justify-content: center; font-size: 13px; flex-shrink: 0; background: var(--bg3); border: 1px solid var(--border); }
-.pipe-ic.hi { background: var(--accent-lt); border-color: rgba(107,58,74,0.22); }
-.pipe-nm { font-family: var(--fm); font-size: 10.5px; font-weight: 500; color: var(--ink2); }
-.pipe-sb { font-family: var(--fm); font-size: 9px; color: var(--muted2); margin-top: 1px; }
-.pipe-conn { width: 1px; height: 12px; background: linear-gradient(to bottom, var(--accent), transparent); margin-left: 14px; }
-.p2-stats { display: flex; flex-direction: column; }
-.p2-st { padding: 16px 0; border-bottom: 1px solid var(--border); }
-.p2-st:last-child { border: none; }
-.p2-n { font-family: var(--fh); font-size: 42px; font-weight: 900; color: var(--brass); line-height: 1; margin-bottom: 3px; }
-.p2-l { font-family: var(--fm); font-size: 9.5px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted2); }
-
-/* ════ CONTACT ════ */
-.contact-wrap { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: start; }
-.c-hed { font-family: var(--fh); font-size: clamp(26px, 4vw, 46px); font-weight: 700; color: var(--ink); line-height: 1.1; letter-spacing: -0.02em; margin-bottom: 14px; }
-.c-hed em { font-style: italic; color: var(--accent); }
-.c-sub { font-size: 14.5px; color: var(--muted); line-height: 1.85; margin-bottom: 22px; }
-.c-links { display: flex; flex-direction: column; }
-.c-row { display: flex; align-items: center; gap: 14px; padding: 16px 0; border-bottom: 1px solid var(--border); text-decoration: none; transition: padding-left 0.2s ease; }
-.c-row:first-child { border-top: 1px solid var(--border); }
-.c-row:hover { padding-left: 8px; }
-.c-ic { width: 40px; height: 40px; border-radius: var(--r); border: 1px solid var(--border); background: var(--surface); display: flex; align-items: center; justify-content: center; flex-shrink: 0; transition: all 0.2s; }
-.c-row:hover .c-ic { background: var(--accent); border-color: var(--accent); }
-.c-ic svg { width: 17px; height: 17px; fill: var(--muted); transition: fill 0.2s; }
-.c-row:hover .c-ic svg { fill: #fff; }
-.c-type { font-family: var(--fm); font-size: 9px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--muted2); margin-bottom: 2px; }
-.c-val { font-size: 13.5px; color: var(--ink); }
-.c-arr { margin-left: auto; color: var(--border); font-size: 16px; transition: all 0.2s; }
-.c-row:hover .c-arr { color: var(--accent); transform: translateX(3px); }
-
-/* ════ FOOTER ════ */
-footer { border-top: 1px solid var(--border); padding: 22px var(--g); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px; max-width: 1200px; margin: 0 auto; }
-footer span, footer a { font-family: var(--fm); font-size: 10.5px; color: var(--muted2); text-decoration: none; letter-spacing: 0.07em; }
-footer a:hover { color: var(--accent); }
-
-/* ════ ANIMATIONS ════ */
-@keyframes up { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
-@keyframes pulse { 0%,100% { box-shadow: 0 0 0 0 rgba(58,107,80,0.4); } 60% { box-shadow: 0 0 0 6px rgba(58,107,80,0); } }
-.rv { opacity: 0; transform: translateY(16px); transition: opacity 0.6s ease, transform 0.6s ease; }
-.rv.in { opacity: 1; transform: translateY(0); }
-
-/* ════ RESPONSIVE ════ */
-@media (max-width: 1024px) {
-  .about-wrap { grid-template-columns: 1fr; gap: 36px; }
-  .sk-grid { grid-template-columns: repeat(2, 1fr); }
-  .proj-split, .proj-std { grid-template-columns: 1fr; }
-  .proj-side { border-left: none; border-top: 1px solid var(--border); }
-  .contact-wrap { grid-template-columns: 1fr; gap: 40px; }
-}
-@media (max-width: 900px) { .h-name { white-space: normal; } }
-@media (max-width: 768px) {
-  .n-links a:not(.n-cv) { display: none; }
-  .hbg { display: flex; }
-  .h-stats { grid-template-columns: repeat(2, 1fr); gap: 20px 0; }
-  .h-stat:not(:last-child)::after { display: none; }
-  .h-stat { padding-right: 0; }
-  .exp-row { grid-template-columns: 1fr; gap: 6px; }
-  .exp-l { padding-right: 0; padding-bottom: 6px; }
-  .edu-in { flex-direction: column; gap: 24px; }
-  .edu-sep { display: none; }
-  footer { flex-direction: column; text-align: center; }
-}
-@media (max-width: 520px) {
-  .sk-grid { grid-template-columns: 1fr; }
-  .h-btns { flex-direction: column; align-items: stretch; }
-  .btn-p, .btn-s { justify-content: center; }
-  .proj-body { padding: 20px; }
-  .proj-side { padding: 18px; }
-}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{background:var(--bg);color:var(--ink);font-family:var(--fb);font-weight:300;font-size:15px;line-height:1.7;overflow-x:hidden;-webkit-font-smoothing:antialiased;}
+.hl{font-weight:700;color:var(--ink2);display:inline;}.hl-t{font-weight:700;color:var(--accent);display:inline;}
+body::before{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)' opacity='0.025'/%3E%3C/svg%3E");pointer-events:none;z-index:9999;}
+::-webkit-scrollbar{width:4px;}::-webkit-scrollbar-track{background:var(--bg2);}::-webkit-scrollbar-thumb{background:var(--accent);border-radius:2px;}
+nav{position:fixed;top:0;left:0;right:0;z-index:200;height:58px;display:flex;justify-content:space-between;align-items:center;padding:0 var(--g);background:rgba(248,246,242,0.95);backdrop-filter:blur(18px);border-bottom:1px solid var(--border);}
+.n-logo{font-family:var(--fh);font-size:17px;font-weight:700;color:var(--ink);text-decoration:none;letter-spacing:0.01em;}.n-logo em{font-style:italic;color:var(--accent);}
+.n-links{display:flex;align-items:center;gap:22px;}
+.n-links a{font-family:var(--fm);font-size:10.5px;letter-spacing:0.11em;text-transform:uppercase;color:var(--muted);text-decoration:none;transition:color 0.2s;}
+.n-links a:hover{color:var(--accent);}
+.n-cv{padding:8px 18px;background:var(--accent);color:var(--surface)!important;border-radius:var(--r);font-size:10px!important;transition:background 0.2s!important;}
+.n-cv:hover{background:var(--accent-dk)!important;}
+.hbg{display:none;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer;padding:4px;}
+.hbg span{display:block;width:22px;height:1.5px;background:var(--ink2);border-radius:1px;}
+.mob{display:none;position:fixed;top:58px;left:0;right:0;z-index:199;background:rgba(248,246,242,0.97);backdrop-filter:blur(18px);border-bottom:1px solid var(--border);flex-direction:column;padding:14px var(--g) 20px;gap:0;}
+.mob.open{display:flex;}
+.mob a{font-family:var(--fm);font-size:11.5px;letter-spacing:0.1em;text-transform:uppercase;color:var(--muted);text-decoration:none;padding:12px 0;border-bottom:1px solid var(--border);}
+.mob a:last-child{border:none;}.mob a:hover{color:var(--accent);}
+.hero{padding:110px var(--g) 70px;max-width:1200px;margin:0 auto;}
+.h-eyebrow{display:flex;align-items:center;gap:14px;margin-bottom:28px;animation:up 0.7s ease both 0.1s;}
+.h-ebar{width:36px;height:1px;background:var(--accent);}
+.h-etxt{font-family:var(--fm);font-size:10.5px;letter-spacing:0.22em;text-transform:uppercase;color:var(--accent);}
+.h-name{font-family:var(--fh);font-size:clamp(2.4rem,5vw,4rem);font-weight:600;line-height:1.05;letter-spacing:-0.015em;color:var(--ink);white-space:nowrap;margin-bottom:16px;animation:up 0.7s ease both 0.2s;}
+.h-name-it{font-style:italic;color:var(--accent);display:inline;}
+.h-tagline{font-family:var(--fh);font-size:clamp(14px,2vw,22px);font-weight:400;font-style:italic;color:#6e6258;margin-bottom:26px;animation:up 0.7s ease both 0.3s;letter-spacing:0.01em;}
+.h-desc{font-size:clamp(14px,1.5vw,15.5px);color:var(--muted);line-height:1.88;max-width:580px;margin-bottom:34px;animation:up 0.7s ease both 0.38s;}
+.h-btns{display:flex;gap:11px;flex-wrap:wrap;animation:up 0.7s ease both 0.46s;}
+.btn-p{display:inline-flex;align-items:center;gap:7px;padding:11px 26px;background:var(--accent);color:var(--surface);font-family:var(--fm);font-size:10.5px;letter-spacing:0.12em;text-transform:uppercase;text-decoration:none;border-radius:var(--r);font-weight:500;transition:background 0.2s,transform 0.15s,box-shadow 0.2s;}
+.btn-p:hover{background:var(--accent-dk);transform:translateY(-2px);box-shadow:0 6px 20px rgba(107,58,74,0.28);}
+.btn-s{display:inline-flex;align-items:center;gap:7px;padding:11px 26px;background:transparent;color:var(--ink2);font-family:var(--fm);font-size:10.5px;letter-spacing:0.12em;text-transform:uppercase;text-decoration:none;border-radius:var(--r);border:1.5px solid var(--border-a);font-weight:400;transition:all 0.2s;}
+.btn-s:hover{border-color:var(--accent);color:var(--accent);transform:translateY(-2px);}
+.h-stats{display:grid;grid-template-columns:repeat(4,1fr);margin-top:52px;padding-top:32px;border-top:1px solid var(--border);animation:up 0.7s ease both 0.54s;}
+.h-stat{padding-right:24px;position:relative;}
+.h-stat:not(:last-child)::after{content:'';position:absolute;right:12px;top:4px;bottom:4px;width:1px;background:var(--border);}
+.h-sn{font-family:var(--fh);font-size:clamp(28px,3.8vw,46px);font-weight:700;color:var(--brass);line-height:1;margin-bottom:6px;}
+.h-sl{font-family:var(--fm);font-size:9.5px;letter-spacing:0.13em;text-transform:uppercase;color:var(--muted2);line-height:1.5;}
+.sec{padding:76px var(--g);max-width:1200px;margin:0 auto;}
+.sec-alt{background:var(--bg2);}
+.sec-alt-w{max-width:1200px;margin:0 auto;padding:76px var(--g);}
+.eyebrow{display:flex;align-items:center;gap:10px;margin-bottom:6px;}
+.ey-tag{font-family:var(--fm);font-size:10px;letter-spacing:0.2em;text-transform:uppercase;color:var(--accent);}
+.ey-ln{width:40px;height:1px;background:var(--border);}
+.sec-title{font-family:var(--fh);font-size:clamp(28px,4.5vw,50px);font-weight:700;color:var(--ink);letter-spacing:-0.02em;line-height:1.06;margin-bottom:38px;}
+.sec-title em{font-style:italic;color:var(--accent);}
+.about-wrap{display:grid;grid-template-columns:1fr 320px;gap:56px;align-items:start;}
+.about-bio p{font-size:15px;color:var(--muted);line-height:1.88;margin-bottom:16px;}
+.about-bio p:last-child{margin-bottom:0;}
+.avail-pill{display:inline-flex;align-items:center;gap:8px;background:#edf5f1;border:1px solid #86c9a4;padding:7px 14px;border-radius:30px;margin-top:20px;}
+.avail-dot{width:7px;height:7px;background:var(--green);border-radius:50%;animation:pulse 2.2s infinite;flex-shrink:0;}
+.avail-pill span{font-family:var(--fm);font-size:10px;letter-spacing:0.1em;text-transform:uppercase;color:var(--green);}
+.a-cards{display:flex;flex-direction:column;gap:10px;}
+.a-card{background:var(--surface);border:1px solid var(--border);border-left:2.5px solid var(--accent);border-radius:var(--r);padding:15px 17px;transition:all 0.2s;}
+.a-card:hover{box-shadow:0 4px 16px rgba(0,0,0,0.06);transform:translateX(3px);border-color:var(--border-a);}
+.a-ct{font-family:var(--fm);font-size:9px;letter-spacing:0.2em;text-transform:uppercase;color:var(--accent);margin-bottom:5px;}
+.a-cv{font-size:13px;color:var(--ink2);line-height:1.6;}
+.a-cv a{color:var(--accent);text-decoration:none;font-weight:700;}
+.a-cv a:hover{text-decoration:underline;}
+.a-cv small{color:var(--muted2);}
+.exp-list{display:flex;flex-direction:column;}
+.exp-row{display:grid;grid-template-columns:195px 1fr;padding:40px 0;border-bottom:1px solid var(--border);}
+.exp-row:first-child{border-top:1px solid var(--border);}
+.exp-row:hover .exp-body{padding-left:8px;}
+.exp-l{padding-right:28px;}
+.exp-date{font-family:var(--fm);font-size:10px;color:var(--accent);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:10px;}
+.exp-co{font-family:var(--fh);font-size:19px;font-weight:700;color:var(--ink);line-height:1.15;margin-bottom:4px;}
+.exp-city{font-family:var(--fm);font-size:9.5px;letter-spacing:0.07em;color:var(--muted2);margin-bottom:10px;}
+.exp-pill{display:inline-block;font-family:var(--fm);font-size:9px;letter-spacing:0.12em;text-transform:uppercase;padding:3px 10px;border-radius:20px;border:1px solid var(--border);color:var(--muted);}
+.exp-pill.live{background:#edf5f1;border-color:#86c9a4;color:var(--green);}
+.exp-body{transition:padding-left 0.22s;}
+.exp-role{font-family:var(--fh);font-size:19px;font-weight:600;font-style:italic;color:var(--accent);margin-bottom:7px;line-height:1.2;}
+.exp-proj{display:inline-flex;align-items:center;gap:6px;font-family:var(--fm);font-size:9.5px;letter-spacing:0.13em;text-transform:uppercase;color:var(--muted2);margin-bottom:16px;background:var(--bg2);padding:4px 11px;border-radius:4px;border:1px solid var(--border);}
+.exp-proj::before{content:'//';color:var(--accent);}
+.exp-pts{list-style:none;display:flex;flex-direction:column;gap:9px;margin-bottom:18px;}
+.exp-pts li{display:flex;align-items:baseline;gap:10px;font-size:14px;color:var(--muted);line-height:1.78;}
+.exp-pts li::before{content:'';min-width:5px;height:5px;background:var(--accent);border-radius:50%;flex-shrink:0;align-self:flex-start;margin-top:7px;}
+.exp-pts li span{display:inline;}
+.exp-tools{display:flex;flex-wrap:wrap;gap:6px;}
+.exp-tool{font-family:var(--fm);font-size:10px;color:var(--muted);background:var(--bg2);border:1px solid var(--border);padding:3px 10px;border-radius:4px;transition:all 0.18s;}
+.exp-tool:hover{color:var(--accent);border-color:var(--border-a);background:var(--accent-lt);}
+.edu-strip{background:var(--accent-dk);padding:48px var(--g);position:relative;overflow:hidden;}
+.edu-strip::before{content:'B.E.';font-family:var(--fh);font-size:clamp(100px,18vw,230px);font-weight:900;color:rgba(255,255,255,0.04);position:absolute;right:var(--g);top:50%;transform:translateY(-50%);line-height:1;pointer-events:none;letter-spacing:-0.04em;}
+.edu-in{max-width:1200px;margin:0 auto;display:flex;align-items:center;gap:48px;flex-wrap:wrap;}
+.edu-tag{font-family:var(--fm);font-size:9.5px;letter-spacing:0.22em;text-transform:uppercase;color:rgba(255,255,255,0.4);margin-bottom:8px;}
+.edu-deg{font-family:var(--fh);font-size:clamp(18px,2.8vw,27px);font-weight:700;color:#fff;line-height:1.2;margin-bottom:5px;}
+.edu-sch{font-family:var(--fm);font-size:11px;letter-spacing:0.05em;color:rgba(255,255,255,0.38);}
+.edu-sep{width:1px;height:64px;background:rgba(255,255,255,0.14);flex-shrink:0;}
+.edu-n{font-family:var(--fh);font-size:clamp(36px,5.5vw,58px);font-weight:900;color:#e8c89e;line-height:1;margin-bottom:5px;}
+.edu-nl{font-family:var(--fm);font-size:9.5px;letter-spacing:0.18em;text-transform:uppercase;color:rgba(255,255,255,0.32);}
+.sk-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;}
+.sk-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--r);padding:22px 20px;position:relative;overflow:hidden;transition:all 0.22s;}
+.sk-card::after{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--accent),var(--brass));transform:scaleX(0);transform-origin:left;transition:transform 0.28s ease;}
+.sk-card:hover{box-shadow:0 8px 26px rgba(0,0,0,0.08);transform:translateY(-3px);border-color:var(--border-a);}
+.sk-card:hover::after{transform:scaleX(1);}
+.sk-icon{font-size:19px;margin-bottom:10px;}
+.sk-title{font-family:var(--fh);font-size:15px;font-weight:700;color:var(--ink);margin-bottom:11px;}
+.sk-pills{display:flex;flex-wrap:wrap;gap:6px;}
+.sk-pill{font-family:var(--fm);font-size:10.5px;color:var(--muted);background:var(--bg);border:1px solid var(--border);padding:3px 10px;border-radius:4px;cursor:default;transition:all 0.18s;}
+.sk-pill:hover{color:var(--accent);border-color:var(--border-a);background:var(--accent-lt);}
+.proj-list{display:flex;flex-direction:column;gap:20px;}
+.proj-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--r);overflow:hidden;transition:all 0.24s;}
+.proj-card:hover{box-shadow:0 12px 44px rgba(0,0,0,0.09);transform:translateY(-4px);border-color:var(--border-a);}
+.proj-split{display:grid;grid-template-columns:1fr 310px;}
+.proj-std{display:grid;grid-template-columns:1fr 260px;}
+.proj-body{padding:34px;}
+.proj-side{background:var(--bg2);border-left:1px solid var(--border);padding:30px 26px;display:flex;flex-direction:column;justify-content:center;}
+.pn{font-family:var(--fm);font-size:9.5px;letter-spacing:0.2em;text-transform:uppercase;color:var(--muted2);margin-bottom:8px;}
+.pbadge{display:inline-flex;align-items:center;gap:5px;font-family:var(--fm);font-size:9.5px;letter-spacing:0.13em;text-transform:uppercase;color:var(--brass);background:var(--brass-lt);border:1px solid rgba(160,120,64,0.25);padding:4px 11px;border-radius:20px;margin-bottom:14px;}
+.ptitle{font-family:var(--fh);font-size:clamp(18px,2.4vw,24px);font-weight:700;color:var(--ink);line-height:1.2;margin-bottom:10px;}
+.pdesc{font-size:13.5px;color:var(--muted);line-height:1.8;margin-bottom:16px;}
+.ppts{list-style:none;display:flex;flex-direction:column;gap:8px;margin-bottom:18px;}
+.ppts li{display:flex;align-items:baseline;gap:10px;font-size:13.5px;color:var(--muted);line-height:1.75;}
+.ppts li::before{content:'';min-width:4px;height:4px;background:var(--accent);border-radius:50%;flex-shrink:0;align-self:flex-start;margin-top:8px;}
+.ppts li span{display:inline;}
+.ptechs{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:20px;}
+.ptech{font-family:var(--fm);font-size:10px;color:var(--muted);border:1px solid var(--border);padding:3px 10px;border-radius:4px;transition:all 0.18s;}
+.ptech:hover{color:var(--accent);border-color:var(--border-a);}
+.plink{display:inline-flex;align-items:center;gap:7px;font-family:var(--fm);font-size:10.5px;letter-spacing:0.12em;text-transform:uppercase;color:var(--accent);text-decoration:none;font-weight:500;border-bottom:1.5px solid rgba(107,58,74,0.3);padding-bottom:2px;transition:all 0.2s;}
+.plink:hover{gap:12px;border-color:var(--accent);}
+.pipe-head{font-family:var(--fm);font-size:9px;letter-spacing:0.2em;text-transform:uppercase;color:var(--muted2);margin-bottom:16px;padding-bottom:12px;border-bottom:1px solid var(--border);}
+.pipe-step{display:flex;align-items:center;gap:10px;padding:6px 0;}
+.pipe-ic{width:30px;height:30px;border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:13px;flex-shrink:0;background:var(--bg3);border:1px solid var(--border);}
+.pipe-ic.hi{background:var(--accent-lt);border-color:rgba(107,58,74,0.22);}
+.pipe-nm{font-family:var(--fm);font-size:10.5px;font-weight:500;color:var(--ink2);}
+.pipe-sb{font-family:var(--fm);font-size:9px;color:var(--muted2);margin-top:1px;}
+.pipe-conn{width:1px;height:12px;background:linear-gradient(to bottom,var(--accent),transparent);margin-left:14px;}
+.p2-stats{display:flex;flex-direction:column;}
+.p2-st{padding:16px 0;border-bottom:1px solid var(--border);}
+.p2-st:last-child{border:none;}
+.p2-n{font-family:var(--fh);font-size:42px;font-weight:900;color:var(--brass);line-height:1;margin-bottom:3px;}
+.p2-l{font-family:var(--fm);font-size:9.5px;letter-spacing:0.14em;text-transform:uppercase;color:var(--muted2);}
+.contact-wrap{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:start;}
+.c-hed{font-family:var(--fh);font-size:clamp(26px,4vw,46px);font-weight:700;color:var(--ink);line-height:1.1;letter-spacing:-0.02em;margin-bottom:14px;}
+.c-hed em{font-style:italic;color:var(--accent);}
+.c-sub{font-size:14.5px;color:var(--muted);line-height:1.85;margin-bottom:22px;}
+.c-links{display:flex;flex-direction:column;}
+.c-row{display:flex;align-items:center;gap:14px;padding:16px 0;border-bottom:1px solid var(--border);text-decoration:none;transition:padding-left 0.2s ease;}
+.c-row:first-child{border-top:1px solid var(--border);}
+.c-row:hover{padding-left:8px;}
+.c-ic{width:40px;height:40px;border-radius:var(--r);border:1px solid var(--border);background:var(--surface);display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:all 0.2s;}
+.c-row:hover .c-ic{background:var(--accent);border-color:var(--accent);}
+.c-ic svg{width:17px;height:17px;fill:var(--muted);transition:fill 0.2s;}
+.c-row:hover .c-ic svg{fill:#fff;}
+.c-type{font-family:var(--fm);font-size:9px;letter-spacing:0.18em;text-transform:uppercase;color:var(--muted2);margin-bottom:2px;}
+.c-val{font-size:13.5px;color:var(--ink);}
+.c-arr{margin-left:auto;color:var(--border);font-size:16px;transition:all 0.2s;}
+.c-row:hover .c-arr{color:var(--accent);transform:translateX(3px);}
+footer{border-top:1px solid var(--border);padding:22px var(--g);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px;max-width:1200px;margin:0 auto;}
+footer span,footer a{font-family:var(--fm);font-size:10.5px;color:var(--muted2);text-decoration:none;letter-spacing:0.07em;}
+footer a:hover{color:var(--accent);}
+@keyframes up{from{opacity:0;transform:translateY(20px);}to{opacity:1;transform:translateY(0);}}
+@keyframes pulse{0%,100%{box-shadow:0 0 0 0 rgba(58,107,80,0.4);}60%{box-shadow:0 0 0 6px rgba(58,107,80,0);}}
+.rv{opacity:0;transform:translateY(16px);transition:opacity 0.6s ease,transform 0.6s ease;}
+.rv.in{opacity:1;transform:translateY(0);}
+@media(max-width:1024px){.about-wrap{grid-template-columns:1fr;gap:36px;}.sk-grid{grid-template-columns:repeat(2,1fr);}.proj-split,.proj-std{grid-template-columns:1fr;}.proj-side{border-left:none;border-top:1px solid var(--border);}.contact-wrap{grid-template-columns:1fr;gap:40px;}}
+@media(max-width:900px){.h-name{white-space:normal;}}
+@media(max-width:768px){.n-links a:not(.n-cv){display:none;}.hbg{display:flex;}.h-stats{grid-template-columns:repeat(2,1fr);gap:20px 0;}.h-stat:not(:last-child)::after{display:none;}.h-stat{padding-right:0;}.exp-row{grid-template-columns:1fr;gap:6px;}.exp-l{padding-right:0;padding-bottom:6px;}.edu-in{flex-direction:column;gap:24px;}.edu-sep{display:none;}footer{flex-direction:column;text-align:center;}}
+@media(max-width:520px){.sk-grid{grid-template-columns:1fr;}.h-btns{flex-direction:column;align-items:stretch;}.btn-p,.btn-s{justify-content:center;}.proj-body{padding:20px;}.proj-side{padding:18px;}}
 </style>
 </head>
 <body>
 
-<!-- NAV -->
 <nav>
   <a class="n-logo" href="#"><em>K</em>alpitha Srinivas</a>
   <div class="n-links">
@@ -286,7 +194,6 @@ footer a:hover { color: var(--accent); }
   <a href="KalpithaSrinivas_Resume.pdf" target="_blank">Download Résumé ↗</a>
 </div>
 
-<!-- HERO -->
 <div class="hero">
   <div class="h-eyebrow">
     <span class="h-ebar"></span>
@@ -308,7 +215,6 @@ footer a:hover { color: var(--accent); }
   </div>
 </div>
 
-<!-- ABOUT -->
 <div id="about" class="sec-alt">
   <div class="sec-alt-w">
     <div class="eyebrow rv"><span class="ey-tag">01 · About</span><span class="ey-ln"></span></div>
@@ -336,13 +242,13 @@ footer a:hover { color: var(--accent); }
   </div>
 </div>
 
-<!-- EXPERIENCE -->
 <div id="experience">
   <div class="sec">
     <div class="eyebrow rv"><span class="ey-tag">02 · Experience</span><span class="ey-ln"></span></div>
     <h2 class="sec-title rv">Where I've <em>Worked</em></h2>
     <div class="exp-list">
 
+      <!-- OPT IT -->
       <div class="exp-row rv">
         <div class="exp-l">
           <div class="exp-date">Sept 2025 — Present</div>
@@ -352,27 +258,26 @@ footer a:hover { color: var(--accent); }
         </div>
         <div class="exp-body">
           <div class="exp-role">DevOps Engineer</div>
-          <div class="exp-proj">Projects: ParkQuility & Shikshalokam</div>
+          <div class="exp-proj">Projects: ParkQuility &amp; Shikshalokam</div>
           <ul class="exp-pts">
-            <li><span>Support production cloud-native applications on AWS, ensuring infrastructure stability across development, staging and production environments.</span></li>
-            <li><span>Manage and troubleshoot core AWS services including EC2, ECS, ALB, Lambda, IAM and CloudWatch, resolving deployment and runtime issues before they reach users.</span></li>
-            <li><span>Configure and maintain CloudWatch alarms across 10+ EC2 instances, enabling proactive monitoring and rapid incident detection.</span></li>
-            <li><span>Handle Linux administration end to end — SSH access setup, sudo provisioning, permission troubleshooting and GCP bastion host storage expansion.</span></li>
-            <li><span>Maintain CI/CD workflows supporting container-based deployments and release validation for all cloud-hosted services.</span></li>
-            <li><span>Author and maintain cross-team operational documentation and runbooks in Confluence.</span></li>
+            <li><span>Support production cloud-native applications on <strong>AWS</strong>, ensuring infrastructure stability across development, staging and production environments.</span></li>
+            <li><span>Manage and troubleshoot core AWS services including <strong>EC2</strong>, <strong>ECS</strong>, <strong>ALB</strong>, <strong>Lambda</strong>, <strong>IAM</strong> and <strong>CloudWatch</strong>, resolving deployment and runtime issues before they reach users.</span></li>
+            <li><span>Configure and maintain <strong>CloudWatch</strong> alarms across 10+ EC2 instances, enabling proactive monitoring and rapid incident detection.</span></li>
+            <li><span>Handle <strong>Linux</strong> administration end to end — SSH access setup, sudo provisioning, permission troubleshooting and <strong>GCP</strong> bastion host storage expansion.</span></li>
+            <li><span>Maintain <strong>CI/CD</strong> workflows supporting container-based deployments and release validation for all cloud-hosted services.</span></li>
           </ul>
           <div class="exp-tools">
             <span class="exp-tool">AWS EC2</span><span class="exp-tool">ECS</span><span class="exp-tool">ALB</span>
             <span class="exp-tool">Lambda</span><span class="exp-tool">IAM</span><span class="exp-tool">CloudWatch</span>
-            <span class="exp-tool">GCP Compute Engine</span><span class="exp-tool">Linux</span>
-            <span class="exp-tool">CI/CD</span><span class="exp-tool">Confluence</span>
+            <span class="exp-tool">GCP Compute Engine</span><span class="exp-tool">Linux</span><span class="exp-tool">CI/CD</span>
           </div>
         </div>
       </div>
 
+      <!-- DELL -->
       <div class="exp-row rv">
         <div class="exp-l">
-          <div class="exp-date">Jan 2024 — Jul 2025</div>
+          <div class="exp-date">Jun 2024 — Jul 2025</div>
           <div class="exp-co">Dell Technologies</div>
           <div class="exp-city">Bengaluru, India</div>
           <span class="exp-pill">Full-time · 13 months</span>
@@ -381,14 +286,11 @@ footer a:hover { color: var(--accent); }
           <div class="exp-role">DevOps Engineer</div>
           <div class="exp-proj">Project: DMX MyAccount — KOB Migration</div>
           <ul class="exp-pts">
-            <li><span>Migrated 25+ micro-frontends from Pivotal Cloud Foundry (PCF) to Kubernetes on Bare Metal (KOB), improving deployment scalability and eliminating platform vendor dependency.</span></li>
-            <li><span>Reduced deployment configuration errors by 40% by designing Helm-based reusable chart templates with proper versioning across all environments.</span></li>
-            <li><span>Standardized containerization by crafting optimized Dockerfiles for minimal image size, faster build times and quicker container startup.</span></li>
-            <li><span>Eliminated configuration drift entirely by centralizing environment management via KOBACE, ensuring full parity across every cluster.</span></li>
-            <li><span>Automated CI/CD pipelines with GitLab covering build, test, security scan and deploy stages — making every release consistent and repeatable.</span></li>
-            <li><span>Embedded SonarQube quality gates and Snyk vulnerability scans into every pipeline run for proactive security posture.</span></li>
-            <li><span>Replaced all hardcoded config with HashiCorp Vault integrations for secure secrets management across every service.</span></li>
-            <li><span>Used Splunk for centralized log aggregation, custom dashboards and alerting across Kubernetes-deployed services.</span></li>
+            <li><span>Migrated <strong>25+ micro-frontends</strong> from Pivotal Cloud Foundry (PCF) to <strong>Kubernetes on Bare Metal (KOB)</strong>, improving deployment scalability and eliminating platform vendor dependency.</span></li>
+            <li><span>Reduced deployment configuration errors by <strong>40%</strong> by designing <strong>Helm</strong>-based reusable chart templates with proper versioning across all environments.</span></li>
+            <li><span>Standardized containerization by crafting optimized <strong>Dockerfiles</strong> for minimal image size, faster build times and quicker container startup.</span></li>
+            <li><span>Eliminated configuration drift entirely by centralizing environment management via <strong>KOBACE</strong>, ensuring full parity across every cluster.</span></li>
+            <li><span>Automated <strong>CI/CD</strong> pipelines with <strong>GitLab</strong> covering build, test, security scan and deploy stages — making every release consistent and repeatable.</span></li>
           </ul>
           <div class="exp-tools">
             <span class="exp-tool">Kubernetes (KOB)</span><span class="exp-tool">KOBACE</span>
@@ -400,24 +302,27 @@ footer a:hover { color: var(--accent); }
         </div>
       </div>
 
+      <!-- TEQUED LABS — UPDATED -->
       <div class="exp-row rv">
         <div class="exp-l">
-          <div class="exp-date">Sep 2022 — Oct 2022</div>
+          <div class="exp-date">Nov 2023 — May 2024</div>
           <div class="exp-co">Tequed Labs</div>
           <div class="exp-city">Bengaluru, India</div>
-          <span class="exp-pill">Internship</span>
+          <span class="exp-pill">Internship · 6 months</span>
         </div>
         <div class="exp-body">
-          <div class="exp-role">AI &amp; ML Intern</div>
+          <div class="exp-role">DevOps Intern</div>
           <ul class="exp-pts">
-            <li><span>Built a fake news detection model using NLP techniques — applying classification and clustering algorithms to identify misinformation in real-world text data.</span></li>
-            <li><span>Performed feature extraction and language pattern analysis on raw datasets, learning to clean and transform unstructured text for ML pipelines.</span></li>
-            <li><span>Explored model evaluation, iteration strategies and how to handle imbalanced datasets in supervised classification tasks.</span></li>
+            <li><span>Containerized applications using <strong>Docker</strong>, writing optimized <strong>Dockerfiles</strong> and managing container lifecycles on <strong>Linux</strong> environments.</span></li>
+            <li><span>Assisted in building <strong>GitLab CI/CD</strong> pipelines using <strong>YAML</strong> configurations to automate build and deployment workflows, reducing manual effort.</span></li>
+            <li><span>Gained foundational experience with <strong>AWS</strong> (EC2, S3, IAM) and <strong>Azure</strong> (Virtual Machines, Storage Accounts) while supporting <strong>Kubernetes</strong> and <strong>Helm</strong> based deployments.</span></li>
           </ul>
           <div class="exp-tools">
-            <span class="exp-tool">Python</span><span class="exp-tool">NLP</span>
-            <span class="exp-tool">Scikit-learn</span><span class="exp-tool">Feature Extraction</span>
-            <span class="exp-tool">Text Classification</span>
+            <span class="exp-tool">Docker</span><span class="exp-tool">Linux</span>
+            <span class="exp-tool">GitLab CI/CD</span><span class="exp-tool">YAML</span>
+            <span class="exp-tool">Kubernetes</span><span class="exp-tool">Helm</span>
+            <span class="exp-tool">AWS EC2</span><span class="exp-tool">AWS S3</span>
+            <span class="exp-tool">AWS IAM</span><span class="exp-tool">Azure VMs</span>
           </div>
         </div>
       </div>
@@ -426,7 +331,6 @@ footer a:hover { color: var(--accent); }
   </div>
 </div>
 
-<!-- EDUCATION -->
 <div class="edu-strip">
   <div class="edu-in">
     <div class="rv">
@@ -441,7 +345,6 @@ footer a:hover { color: var(--accent); }
   </div>
 </div>
 
-<!-- SKILLS -->
 <div id="skills" class="sec-alt">
   <div class="sec-alt-w">
     <div class="eyebrow rv"><span class="ey-tag">03 · Skills</span><span class="ey-ln"></span></div>
@@ -453,8 +356,9 @@ footer a:hover { color: var(--accent); }
         <div class="sk-pills">
           <span class="sk-pill">AWS EC2</span><span class="sk-pill">AWS ECS</span><span class="sk-pill">AWS EKS</span>
           <span class="sk-pill">AWS ALB</span><span class="sk-pill">AWS Lambda</span><span class="sk-pill">AWS IAM</span>
-          <span class="sk-pill">AWS S3</span><span class="sk-pill">CloudWatch</span><span class="sk-pill">Cost Explorer</span>
-          <span class="sk-pill">GCP Compute Engine</span><span class="sk-pill">GCP Bastion Host</span><span class="sk-pill">PCF</span>
+          <span class="sk-pill">AWS S3</span><span class="sk-pill">CloudWatch</span>
+          <span class="sk-pill">Azure VMs</span><span class="sk-pill">Azure Storage</span>
+          <span class="sk-pill">GCP Compute Engine</span><span class="sk-pill">PCF</span>
         </div>
       </div>
       <div class="sk-card rv">
@@ -507,14 +411,12 @@ footer a:hover { color: var(--accent); }
   </div>
 </div>
 
-<!-- PROJECTS -->
 <div id="projects">
   <div class="sec">
     <div class="eyebrow rv"><span class="ey-tag">04 · Projects</span><span class="ey-ln"></span></div>
     <h2 class="sec-title rv">Things I've <em>Built</em></h2>
     <div class="proj-list">
 
-      <!-- PROJECT 1: EKS Microservices -->
       <div class="proj-card proj-std rv">
         <div class="proj-body">
           <div class="pn">Project 01 / 04</div>
@@ -525,8 +427,8 @@ footer a:hover { color: var(--accent); }
             <li><span>Provisioned a Kubernetes cluster on AWS EKS and deployed the Robot Shop microservices application using Helm charts.</span></li>
             <li><span>Implemented container orchestration for multiple services including web, catalogue, cart, payment and shipping.</span></li>
             <li><span>Configured AWS Load Balancer to expose Kubernetes services and route external traffic to the cluster.</span></li>
-            <li><span>Designed a scalable microservices architecture using Kubernetes pods, services and internal networking.</span></li>
-            <li><span>Demonstrated real-world DevOps practices including containerization, Helm-based deployments and Kubernetes service discovery.</span></li>
+            <li><span>Implemented persistent storage using Amazon EBS CSI driver for stateful services such as MySQL and MongoDB.</span></li>
+            <li><span>Diagnosed and resolved Kubernetes pod scheduling issues by scaling the EKS node group.</span></li>
           </ul>
           <div class="ptechs">
             <span class="ptech">AWS</span><span class="ptech">Amazon EKS</span><span class="ptech">Kubernetes</span>
@@ -547,7 +449,6 @@ footer a:hover { color: var(--accent); }
         </div>
       </div>
 
-      <!-- PROJECT 2: CI/CD GitOps -->
       <div class="proj-card proj-split rv">
         <div class="proj-body">
           <div class="pn">Project 02 / 04</div>
@@ -559,7 +460,6 @@ footer a:hover { color: var(--accent); }
             <li><span>Built reusable Helm charts with versioned configs for rolling updates and instant rollbacks on AWS EKS.</span></li>
             <li><span>Implemented GitOps with Argo CD — every chart change in GitHub is auto-synced to Kubernetes. Zero kubectl in production.</span></li>
             <li><span>Configured NGINX Ingress Controller and AWS Load Balancer Controller to expose the app publicly with clean routing.</span></li>
-            <li><span>End result: push code → CI builds → image pushed → chart updated → Argo CD deploys → live in Kubernetes.</span></li>
           </ul>
           <div class="ptechs">
             <span class="ptech">Go</span><span class="ptech">Docker</span><span class="ptech">DockerHub</span>
@@ -585,7 +485,6 @@ footer a:hover { color: var(--accent); }
         </div>
       </div>
 
-      <!-- PROJECT 3: VPC ALB ASG (NEW) -->
       <div class="proj-card proj-std rv">
         <div class="proj-body">
           <div class="pn">Project 03 / 04</div>
@@ -597,17 +496,12 @@ footer a:hover { color: var(--accent); }
             <li><span>Configured layered Security Groups: ALB accepts HTTP (80) from the internet; EC2 only accepts traffic from the ALB; Bastion allows SSH from local machine only.</span></li>
             <li><span>Created an Auto Scaling Group with Desired Capacity: 2, launching Ubuntu t2.micro instances via a reusable Launch Template in private subnets.</span></li>
             <li><span>Set up a Bastion Host in the public subnet as a secure SSH gateway — enabling Laptop → Bastion → Private EC2 access without exposing instances directly.</span></li>
-            <li><span>Deployed a Python HTTP Server on each instance and verified load balancing with curl, confirming traffic is distributed across both EC2 instances.</span></li>
           </ul>
           <div class="ptechs">
-            <span class="ptech">Amazon VPC</span>
-            <span class="ptech">EC2</span>
-            <span class="ptech">Auto Scaling Group</span>
-            <span class="ptech">Application Load Balancer</span>
-            <span class="ptech">Security Groups</span>
-            <span class="ptech">Bastion Host</span>
-            <span class="ptech">Python HTTP Server</span>
-            <span class="ptech">Ubuntu</span>
+            <span class="ptech">Amazon VPC</span><span class="ptech">EC2</span>
+            <span class="ptech">Auto Scaling Group</span><span class="ptech">Application Load Balancer</span>
+            <span class="ptech">Security Groups</span><span class="ptech">Bastion Host</span>
+            <span class="ptech">Python HTTP Server</span><span class="ptech">Ubuntu</span>
           </div>
           <a href="https://github.com/kalpithasrinivas/aws-project-used-in-production" class="plink" target="_blank">View on GitHub →</a>
         </div>
@@ -625,7 +519,6 @@ footer a:hover { color: var(--accent); }
         </div>
       </div>
 
-      <!-- PROJECT 4: Biometric -->
       <div class="proj-card proj-std rv">
         <div class="proj-body">
           <div class="pn">Project 04 / 04</div>
@@ -636,9 +529,7 @@ footer a:hover { color: var(--accent); }
             <li><span>Three-factor authentication combining fingerprint, iris and encrypted credential storage for layered identity verification.</span></li>
             <li><span>Applied the Daugman Algorithm for iris feature extraction — the industry-standard mathematical model for iris biometrics.</span></li>
             <li><span>Trained a CNN for pattern recognition across both biometric inputs, achieving 95% accuracy on test datasets.</span></li>
-            <li><span>Image preprocessing pipelines with OpenCV significantly improved model robustness and reduced false positives.</span></li>
             <li><span>Integrated Rubik's Cube Encryption to secure biometric templates at rest against replay and spoofing attacks.</span></li>
-            <li><span>Exposed via a clean Flask REST API for integration testing and live demonstration.</span></li>
           </ul>
           <div class="ptechs">
             <span class="ptech">Python</span><span class="ptech">Flask</span><span class="ptech">CNN</span>
@@ -661,7 +552,6 @@ footer a:hover { color: var(--accent); }
   </div>
 </div>
 
-<!-- CONTACT -->
 <div id="contact" class="sec-alt">
   <div class="sec-alt-w">
     <div class="eyebrow rv"><span class="ey-tag">05 · Contact</span><span class="ey-ln"></span></div>
@@ -702,7 +592,6 @@ footer a:hover { color: var(--accent); }
   </div>
 </div>
 
-<!-- FOOTER -->
 <footer>
   <span>© 2026 Kalpitha Srinivas</span>
   <span>DevOps Engineer · Bengaluru</span>
@@ -710,26 +599,16 @@ footer a:hover { color: var(--accent); }
 </footer>
 
 <script>
-const hbg = document.getElementById('hbg');
-const mob = document.getElementById('mob');
-hbg.addEventListener('click', () => mob.classList.toggle('open'));
-function cls() { mob.classList.remove('open'); }
-document.addEventListener('click', e => {
-  if (!hbg.contains(e.target) && !mob.contains(e.target)) mob.classList.remove('open');
-});
-const obs = new IntersectionObserver(es => {
-  es.forEach((e, i) => {
-    if (e.isIntersecting) { setTimeout(() => e.target.classList.add('in'), i * 55); obs.unobserve(e.target); }
-  });
-}, { threshold: 0.08 });
-document.querySelectorAll('.rv').forEach(el => obs.observe(el));
-const allSecs = document.querySelectorAll('[id]');
-const navAs = document.querySelectorAll('.n-links a:not(.n-cv)');
-window.addEventListener('scroll', () => {
-  let cur = '';
-  allSecs.forEach(s => { if (window.scrollY >= s.offsetTop - 100) cur = s.id; });
-  navAs.forEach(a => { a.style.color = a.getAttribute('href') === '#' + cur ? 'var(--accent)' : ''; });
-}, { passive: true });
+const hbg=document.getElementById('hbg');
+const mob=document.getElementById('mob');
+hbg.addEventListener('click',()=>mob.classList.toggle('open'));
+function cls(){mob.classList.remove('open');}
+document.addEventListener('click',e=>{if(!hbg.contains(e.target)&&!mob.contains(e.target))mob.classList.remove('open');});
+const obs=new IntersectionObserver(es=>{es.forEach((e,i)=>{if(e.isIntersecting){setTimeout(()=>e.target.classList.add('in'),i*55);obs.unobserve(e.target);}});},{threshold:0.08});
+document.querySelectorAll('.rv').forEach(el=>obs.observe(el));
+const allSecs=document.querySelectorAll('[id]');
+const navAs=document.querySelectorAll('.n-links a:not(.n-cv)');
+window.addEventListener('scroll',()=>{let cur='';allSecs.forEach(s=>{if(window.scrollY>=s.offsetTop-100)cur=s.id;});navAs.forEach(a=>{a.style.color=a.getAttribute('href')==='#'+cur?'var(--accent)':'';});},{passive:true});
 </script>
 </body>
 </html>
