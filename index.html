@@ -235,7 +235,7 @@ footer a:hover{color:var(--accent);}
         <div class="a-card"><div class="a-ct">Education</div><div class="a-cv">B.E. Computer Science<br>JSS Academy of Technical Education<br><small>2019–2023 · CGPA 8.46/10</small></div></div>
         <div class="a-card"><div class="a-ct">Core Expertise</div><div class="a-cv">AWS · Kubernetes · Docker · Helm · Argo CD · GitHub Actions · GitLab CI/CD · Linux</div></div>
         <div class="a-card"><div class="a-ct">Location</div><div class="a-cv">📍 Bengaluru, Karnataka, India</div></div>
-        <div class="a-card"><div class="a-ct">Contact</div><div class="a-cv"><a href="/cdn-cgi/l/email-protection#0e656f627e677a666f6f7d7c676067786f7d4e69636f6762206d6163"><span class="__cf_email__" data-cfemail="0269636e726b766a636371706b6c6b74637142656f636b6e2c616d6f">[email&#160;protected]</span></a><br><a href="tel:+918431973076">+91 84319 73076</a></div></div>
+        <div class="a-card"><div class="a-ct">Contact</div><div class="a-cv"><a href="mailto:kalpithaasrinivas@gmail.com">kalpithaasrinivas@gmail.com</a><br><a href="tel:+918431973076">+91 84319 73076</a></div></div>
         <div class="a-card"><div class="a-ct">Profiles</div><div class="a-cv"><a href="https://linkedin.com/in/kalpitha-srinivas-740358220" target="_blank">LinkedIn ↗</a> &nbsp;·&nbsp; <a href="https://github.com/kalpithasrinivas" target="_blank">GitHub ↗</a></div></div>
       </div>
     </div>
@@ -418,9 +418,45 @@ footer a:hover{color:var(--accent);}
     <h2 class="sec-title rv">Things I've <em>Built</em></h2>
     <div class="proj-list">
 
+      <div class="proj-card proj-split rv">
+        <div class="proj-body">
+          <div class="pn">Project 01 / 05</div>
+          <div class="pbadge">★ Featured · AI-Powered SRE Tool</div>
+          <h3 class="ptitle">AI Kubernetes Troubleshooting Agent</h3>
+          <p class="pdesc">An AI-powered agent that investigates Kubernetes cluster failures and returns a root cause, suggested fix and confidence score — combining a kubectl-based diagnostic layer with an LLM reasoning agent, built end-to-end from a local Kind cluster to a full investigation dashboard.</p>
+          <ul class="ppts">
+            <li><span>Built a FastAPI investigation layer running kubectl-based diagnostics across pods, logs, events, deployments and network checks, structuring the findings for AI reasoning.</span></li>
+            <li><span>Integrated Claude (via OpenRouter) as the reasoning engine to generate root cause analysis, a suggested fix and a confidence score for each investigation.</span></li>
+            <li><span>Used InsForge for auth, investigation history storage, a Model Gateway for LLM routing, and realtime progress updates surfaced live in the UI — not simulated.</span></li>
+            <li><span>Built the frontend in React/Next.js, TypeScript and Tailwind, with multi-cluster selection and live investigation progress.</span></li>
+            <li><span>Verified the full pipeline against a real Kind cluster with injected failure scenarios — CrashLoopBackOff, ImagePullBackOff, OOMKilled and service selector mismatches — and found and fixed real bugs, including a pod inspector that misclassified OOMKilled pods as generic CrashLoopBackOff.</span></li>
+            <li><span>Containerized the backend with Docker, resolving kubeconfig mounting and host networking so the containerized service could reach the local Kind cluster.</span></li>
+          </ul>
+          <div class="ptechs">
+            <span class="ptech">Kubernetes</span><span class="ptech">Kind</span><span class="ptech">FastAPI</span>
+            <span class="ptech">Python</span><span class="ptech">React</span><span class="ptech">Next.js</span>
+            <span class="ptech">TypeScript</span><span class="ptech">Tailwind CSS</span>
+            <span class="ptech">InsForge</span><span class="ptech">Claude (OpenRouter)</span>
+            <span class="ptech">Docker</span><span class="ptech">kubectl</span>
+          </div>
+        </div>
+        <div class="proj-side">
+          <div class="pipe-head">// Investigation Flow</div>
+          <div class="pipe-step"><div class="pipe-ic">💥</div><div><div class="pipe-nm">Cluster Failure</div><div class="pipe-sb">CrashLoop · OOMKilled · ImagePullBackOff</div></div></div>
+          <div class="pipe-conn"></div>
+          <div class="pipe-step"><div class="pipe-ic hi">🔍</div><div><div class="pipe-nm">FastAPI Investigation Layer</div><div class="pipe-sb">kubectl-based diagnostics</div></div></div>
+          <div class="pipe-conn"></div>
+          <div class="pipe-step"><div class="pipe-ic hi">🤖</div><div><div class="pipe-nm">Claude Reasoning Agent</div><div class="pipe-sb">Root cause + fix + confidence</div></div></div>
+          <div class="pipe-conn"></div>
+          <div class="pipe-step"><div class="pipe-ic hi">🗄️</div><div><div class="pipe-nm">InsForge</div><div class="pipe-sb">Auth · history · realtime sync</div></div></div>
+          <div class="pipe-conn"></div>
+          <div class="pipe-step"><div class="pipe-ic">📊</div><div><div class="pipe-nm">Dashboard — Live ✓</div><div class="pipe-sb">React / Next.js frontend</div></div></div>
+        </div>
+      </div>
+
       <div class="proj-card proj-std rv">
         <div class="proj-body">
-          <div class="pn">Project 01 / 04</div>
+          <div class="pn">Project 02 / 05</div>
           <div class="pbadge">Cloud · Kubernetes · Microservices</div>
           <h3 class="ptitle">AWS EKS Three-Tier Microservices Deployment</h3>
           <p class="pdesc">Deployed a complete cloud-native microservices application (Robot Shop) on AWS using Kubernetes and Helm. The system demonstrates a scalable three-tier architecture with containerized services orchestrated through Amazon EKS and exposed using an AWS Load Balancer.</p>
@@ -452,7 +488,7 @@ footer a:hover{color:var(--accent);}
 
       <div class="proj-card proj-split rv">
         <div class="proj-body">
-          <div class="pn">Project 02 / 04</div>
+          <div class="pn">Project 03 / 05</div>
           <div class="pbadge">★ Featured · End-to-End DevOps Pipeline</div>
           <h3 class="ptitle">CI/CD &amp; GitOps Deployment on AWS EKS</h3>
           <p class="pdesc">A fully automated, production-grade DevOps pipeline for a Go web application — from source code commit to live Kubernetes deployment with zero manual steps.</p>
@@ -488,7 +524,7 @@ footer a:hover{color:var(--accent);}
 
       <div class="proj-card proj-std rv">
         <div class="proj-body">
-          <div class="pn">Project 03 / 04</div>
+          <div class="pn">Project 04 / 05</div>
           <div class="pbadge">AWS · Networking · High Availability</div>
           <h3 class="ptitle">AWS DevOps – VPC, ALB &amp; Auto Scaling</h3>
           <p class="pdesc">A production-style AWS architecture with secure networking, intelligent load balancing, and high availability using Auto Scaling Groups — demonstrating real-world cloud infrastructure design with private EC2 instances, a Bastion Host, and verified round-robin traffic distribution.</p>
@@ -522,7 +558,7 @@ footer a:hover{color:var(--accent);}
 
       <div class="proj-card proj-std rv">
         <div class="proj-body">
-          <div class="pn">Project 04 / 04</div>
+          <div class="pn">Project 05 / 05</div>
           <div class="pbadge">Academic · Security · ML · Biometrics</div>
           <h3 class="ptitle">Biometric Authentication System</h3>
           <p class="pdesc">A three-factor biometric authentication system combining fingerprint recognition, iris recognition and encrypted credential storage — achieving 95% accuracy with CNN classification and Rubik's Cube Encryption.</p>
